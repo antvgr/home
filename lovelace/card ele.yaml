@@ -1,0 +1,46 @@
+type: custom:stack-in-card
+cards:
+  - type: custom:mushroom-entity-card
+    entity: sensor.consommation_electricite_par_jour
+    primary_info: state
+    secondary_info: name
+    icon: mdi:meter-electric
+    name: Electricité
+    icon_color: orange
+    card_mod:
+      style: |
+        ha-card {
+          z-index: 1;
+          --ha-card-border-width: 0;
+        }
+  - type: custom:mini-graph-card
+    entities:
+      - entity: sensor.linky_sinsts
+        name: Elec
+        color: var(--orange-color)
+    height: 60
+    hours_to_show: 24
+    line_width: 3
+    animate: true
+    show:
+      name: false
+      icon: false
+      state: false
+      legend: false
+      fill: fade
+    card_mod:
+      style: |
+        ha-card {
+          position: absolute !important;
+          height: 100%;
+          width: 100%;
+          top: 0px;
+          --ha-card-border-width: 0;
+        }
+        ha-card:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to right, var(--card-background-color) 20%, transparent);
+        }
